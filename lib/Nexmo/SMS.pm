@@ -3,10 +3,12 @@ package Nexmo::SMS;
 use warnings;
 use strict;
 
+use Nexmo::SMS::BinaryMessage;
 use Nexmo::SMS::TextMessage;
+use Nexmo::SMS::WAPPushMessage;
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 
@@ -42,8 +44,9 @@ sub sms {
     my ($self,%param) = @_;
     
     my %types = (
-        text   => 'Nexmo::SMS::TextMessage',
-        #binary => 'Nexmo::SMS::BinaryMessage',
+        text    => 'Nexmo::SMS::TextMessage',
+        binary  => 'Nexmo::SMS::BinaryMessage',
+        wappush => 'Nexmo::SMS::WAPPushMessage',
     );
     
     my $requested_type = $param{type};
@@ -112,7 +115,7 @@ Nexmo::SMS
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -144,7 +147,7 @@ Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 METHODS
 
@@ -166,6 +169,16 @@ Create a new message object or returns C<undef>.
 
     my $sms = $nexmo->sms(
         text     => 'This is a test',
+        from     => 'Test02',
+        to       => '452312432',
+    ) or die $nexmo->errstr;
+
+Send a binary message
+
+    my $binary = $nexmo->sms(
+        type     => 'binary',
+        udh      => '06050415811581',   # hex encoded udh
+        body     => '0011223344556677', # hex encoded body
         from     => 'Test02',
         to       => '452312432',
     ) or die $nexmo->errstr;

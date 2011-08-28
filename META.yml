@@ -16,4 +16,4 @@ requires:
   HTTP::Response: 5.836
   JSON::PP: 2.26000
   LWP::UserAgent: 5.835
-version: 0.01
+version: 0.02

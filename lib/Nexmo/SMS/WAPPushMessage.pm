@@ -1,4 +1,4 @@
-package Nexmo::SMS::TextMessage;
+package Nexmo::SMS::WAPPushMessage;
 
 use strict;
 use warnings;
@@ -12,7 +12,9 @@ use JSON::PP;
 our $VERSION = '0.01';
 
 my %attrs = (
-    text              => 'required',
+    title             => 'required',
+    url               => 'required',
+    type              => 'required',
     from              => 'required',
     to                => 'required',
     server            => 'required',
@@ -21,6 +23,7 @@ my %attrs = (
     status_report_req => 'optional',
     client_ref        => 'optional',
     network_code      => 'optional',
+    validity          => 'optional',
 );
 
 for my $attr ( keys %attrs ) {
@@ -79,6 +82,7 @@ sub send {
     $optional{'client-ref'}        = $self->client_ref        if $self->client_ref;
     $optional{'status-report-req'} = $self->status_report_req if $self->status_report_req;
     $optional{'network-code'}      = $self->network_code      if $self->network_code;
+    $optional{'validity'}          = $self->validity          if $self->validity;
     
     my $response = $self->user_agent->post(
         $self->server,
@@ -88,7 +92,9 @@ sub send {
             password => $self->password,
             from     => $self->from,
             to       => $self->to,
-            text     => $self->text,
+            title    => $self->title,
+            url      => $self->url,
+            type     => $self->type,
         },
     );
     
@@ -132,7 +138,7 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage
+Nexmo::SMS::WAPPushMessage
 
 =head1 VERSION
 
@@ -142,9 +148,9 @@ version 0.02
 
 This module simplifies sending SMS through the Nexmo API.
 
-    use Nexmo::SMS::TextMessage;
+    use Nexmo::SMS::WAPPushMessage;
 
-    my $nexmo = Nexmo::SMS::TextMessage->new(
+    my $nexmo = Nexmo::SMS::WAPPushMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
@@ -161,7 +167,7 @@ This module simplifies sending SMS through the Nexmo API.
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage - Module that respresents a text message for the Nexmo SMS API!
+Nexmo::SMS::WAPPushMessage - Module that respresents a WAPPush message for the Nexmo SMS API!
 
 =head1 VERSION
 
@@ -173,7 +179,7 @@ Version 0.01
 
 create a new object
 
-    my $message = Nexmo::SMS::TextMessage->new(
+    my $message = Nexmo::SMS::WAPPushMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
@@ -181,7 +187,9 @@ create a new object
 
 This method recognises these parameters:
 
-    text              => 'required',
+    title             => 'required',
+    url               => 'required',
+    type              => 'required',
     from              => 'required',
     to                => 'required',
     server            => 'required',
@@ -190,6 +198,7 @@ This method recognises these parameters:
     status_report_req => 'optional',
     client_ref        => 'optional',
     network_code      => 'optional',
+    validity          => 'optional',
 
 =head2 user_agent
 
@@ -211,14 +220,14 @@ return the "last" error as string.
 This actually calls the Nexmo SMS API. It returns a L<Nexmo::SMS::Response> object or
 C<undef> (on failure).
 
-   my $sms = Nexmo::SMS::TextMessage->new( ... );
+   my $sms = Nexmo::SMS::WAPPushMessage->new( ... );
    $sms->send or die $sms->errstr;
 
 =head2 check_needed_params
 
 This method checks if all needed parameters are passed.
 
-  my $params_not_ok = Nexmo::SMS::TextMessage->check_needed_params( ... );
+  my $params_not_ok = Nexmo::SMS::WAPPushMessage->check_needed_params( ... );
   if ( $params_not_ok ) {
       print "Please check $params_not_ok";
   }
@@ -241,11 +250,17 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 
 =item * status_report_req
 
-=item * text
+=item * title
+
+=item * url
+
+=item * type
 
 =item * to
 
 =item * username
+
+=item * validity
 
 =back
 

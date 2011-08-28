@@ -1,4 +1,4 @@
-package Nexmo::SMS::TextMessage;
+package Nexmo::SMS::BinaryMessage;
 
 use strict;
 use warnings;
@@ -12,7 +12,9 @@ use JSON::PP;
 our $VERSION = '0.01';
 
 my %attrs = (
-    text              => 'required',
+    body              => 'required',
+    udh               => 'required',
+    type              => 'required',
     from              => 'required',
     to                => 'required',
     server            => 'required',
@@ -88,7 +90,9 @@ sub send {
             password => $self->password,
             from     => $self->from,
             to       => $self->to,
-            text     => $self->text,
+            body     => $self->body,
+            udh      => $self->udh,
+            type     => $self->type,
         },
     );
     
@@ -132,7 +136,7 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage
+Nexmo::SMS::BinaryMessage
 
 =head1 VERSION
 
@@ -142,9 +146,9 @@ version 0.02
 
 This module simplifies sending SMS through the Nexmo API.
 
-    use Nexmo::SMS::TextMessage;
+    use Nexmo::SMS::BinaryMessage;
 
-    my $nexmo = Nexmo::SMS::TextMessage->new(
+    my $nexmo = Nexmo::SMS::BinaryMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
@@ -161,7 +165,7 @@ This module simplifies sending SMS through the Nexmo API.
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage - Module that respresents a text message for the Nexmo SMS API!
+Nexmo::SMS::BinaryMessage - Module that respresents a binary message for the Nexmo SMS API!
 
 =head1 VERSION
 
@@ -173,7 +177,7 @@ Version 0.01
 
 create a new object
 
-    my $message = Nexmo::SMS::TextMessage->new(
+    my $message = Nexmo::SMS::BinaryMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
@@ -181,7 +185,9 @@ create a new object
 
 This method recognises these parameters:
 
-    text              => 'required',
+    body              => 'required',
+    udh               => 'required',
+    type              => 'required',
     from              => 'required',
     to                => 'required',
     server            => 'required',
@@ -211,14 +217,14 @@ return the "last" error as string.
 This actually calls the Nexmo SMS API. It returns a L<Nexmo::SMS::Response> object or
 C<undef> (on failure).
 
-   my $sms = Nexmo::SMS::TextMessage->new( ... );
+   my $sms = Nexmo::SMS::BinaryMessage->new( ... );
    $sms->send or die $sms->errstr;
 
 =head2 check_needed_params
 
 This method checks if all needed parameters are passed.
 
-  my $params_not_ok = Nexmo::SMS::TextMessage->check_needed_params( ... );
+  my $params_not_ok = Nexmo::SMS::BinaryMessage->check_needed_params( ... );
   if ( $params_not_ok ) {
       print "Please check $params_not_ok";
   }
@@ -241,7 +247,11 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 
 =item * status_report_req
 
-=item * text
+=item * body
+
+=item * udh
+
+=item * type
 
 =item * to
 

@@ -43,7 +43,7 @@ Nexmo::SMS::MockLWP
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 DESCRIPTION
 
@@ -103,6 +103,32 @@ __DATA__
               "status":"4",
               "message-id":"message001",
               "client-ref":"Test001 - Reference",
+              "remaining-balance":"20.0",
+              "message-price":"0.05",
+              "error-text":""
+              }
+            ]
+        },
+        "Test04" : {
+            "message-count":"1",
+            "messages":[
+              {
+              "status":"0",
+              "message-id":"message004",
+              "client-ref":"Test004 - Reference",
+              "remaining-balance":"20.0",
+              "message-price":"0.05",
+              "error-text":""
+              }
+            ]
+        },
+        "Test05" : {
+            "message-count":"1",
+            "messages":[
+              {
+              "status":"0",
+              "message-id":"message005",
+              "client-ref":"Test005 - Reference",
               "remaining-balance":"20.0",
               "message-price":"0.05",
               "error-text":""
