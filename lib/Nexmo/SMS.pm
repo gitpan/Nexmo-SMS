@@ -7,8 +7,10 @@ use Nexmo::SMS::BinaryMessage;
 use Nexmo::SMS::TextMessage;
 use Nexmo::SMS::WAPPushMessage;
 
+use Nexmo::SMS::GetBalance;
 
-our $VERSION = '0.02';
+
+our $VERSION = '0.03';
 
 
 
@@ -93,8 +95,17 @@ sub errstr {
 
 
 sub get_balance {
-    warn "not implemented yet\n";
-    return;
+    my ($self,%param) = @_;
+    
+    $param{server}   ||= $self->server;
+    $param{username} ||= $self->username;
+    $param{password} ||= $self->password;
+
+    my $balance = Nexmo::SMS::GetBalance->new(
+        %param,
+    );
+    
+    return $balance->get_balance;
 }
 
 
@@ -115,7 +126,7 @@ Nexmo::SMS
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -147,7 +158,7 @@ Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 METHODS
 
@@ -191,7 +202,7 @@ return the "last" error as string.
 
 =head2 get_balance
 
-Not implemented yet...
+  my $balance = $nexmo->get_balance;
 
 =head2 get_pricing
 
