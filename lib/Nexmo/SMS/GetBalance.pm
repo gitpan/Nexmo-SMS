@@ -98,7 +98,7 @@ Nexmo::SMS::GetBalance
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -193,7 +193,7 @@ This software is Copyright (c) 2011 by Renee Baecker.
 
 This is free software, licensed under:
 
-  The Artistic License 2.0
+  The Artistic License 2.0 (GPL Compatible)
 
 =cut
 

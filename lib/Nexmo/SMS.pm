@@ -6,11 +6,12 @@ use strict;
 use Nexmo::SMS::BinaryMessage;
 use Nexmo::SMS::TextMessage;
 use Nexmo::SMS::WAPPushMessage;
+use Nexmo::SMS::UnicodeMessage;
 
 use Nexmo::SMS::GetBalance;
 
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 
@@ -31,6 +32,8 @@ sub new {
     my ($class,%param) = @_;
     
     my $self = bless {}, $class;
+
+    $param{server} ||= '';
     
     for my $attr ( @attrs ) {
         if ( exists $param{$attr} ) {
@@ -47,6 +50,7 @@ sub sms {
     
     my %types = (
         text    => 'Nexmo::SMS::TextMessage',
+        unicode => 'Nexmo::SMS::UnicodeMessage',
         binary  => 'Nexmo::SMS::BinaryMessage',
         wappush => 'Nexmo::SMS::WAPPushMessage',
     );
@@ -96,7 +100,7 @@ sub errstr {
 
 sub get_balance {
     my ($self,%param) = @_;
-    
+
     $param{server}   ||= $self->server;
     $param{username} ||= $self->username;
     $param{password} ||= $self->password;
@@ -126,7 +130,7 @@ Nexmo::SMS
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -158,7 +162,7 @@ Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =head1 METHODS
 
@@ -266,6 +270,9 @@ L<http://search.cpan.org/dist/Nexmo-SMS/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Jui-Nan Lin added support for Unicode messages, thanks!
+(see https://github.com/reneeb/perl-Nexmo-SMS/pull/1/files)
+
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2011 Renee Baecker.
@@ -282,7 +289,7 @@ This software is Copyright (c) 2011 by Renee Baecker.
 
 This is free software, licensed under:
 
-  The Artistic License 2.0
+  The Artistic License 2.0 (GPL Compatible)
 
 =cut
 

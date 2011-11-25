@@ -4,29 +4,29 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Module for the Nexmo SMS API!',
-  'AUTHOR' => 'Renee Baecker <module@renee-baecker.de>',
-  'BUILD_REQUIRES' => {},
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+  "ABSTRACT" => "Module for the Nexmo SMS API!",
+  "AUTHOR" => "Renee Baecker <module\@renee-baecker.de>",
+  "BUILD_REQUIRES" => {},
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Nexmo-SMS',
-  'EXE_FILES' => [],
-  'LICENSE' => 'artistic_2',
-  'NAME' => 'Nexmo::SMS',
-  'PREREQ_PM' => {
-    'HTTP::Response' => '5.836',
-    'JSON::PP' => '2.26000',
-    'LWP::UserAgent' => '5.835'
+  "DISTNAME" => "Nexmo-SMS",
+  "EXE_FILES" => [],
+  "LICENSE" => "artistic_2",
+  "NAME" => "Nexmo::SMS",
+  "PREREQ_PM" => {
+    "HTTP::Response" => "5.836",
+    "JSON::PP" => "2.26000",
+    "LWP::UserAgent" => "5.835"
   },
-  'VERSION' => '0.03',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.04",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

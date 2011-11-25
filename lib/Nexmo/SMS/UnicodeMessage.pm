@@ -1,4 +1,4 @@
-package Nexmo::SMS::TextMessage;
+package Nexmo::SMS::UnicodeMessage;
 
 use strict;
 use warnings;
@@ -13,6 +13,7 @@ our $VERSION = '0.01';
 
 my %attrs = (
     text              => 'required',
+    type              => 'required',
     from              => 'required',
     to                => 'required',
     server            => 'required',
@@ -89,6 +90,7 @@ sub send {
             from     => $self->from,
             to       => $self->to,
             text     => $self->text,
+            type     => $self->type,
         },
     );
     
@@ -132,7 +134,7 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage
+Nexmo::SMS::UnicodeMessage
 
 =head1 VERSION
 
@@ -142,13 +144,14 @@ version 0.04
 
 This module simplifies sending SMS through the Nexmo API.
 
-    use Nexmo::SMS::TextMessage;
+    use Nexmo::SMS::UnicodeMessage;
 
-    my $nexmo = Nexmo::SMS::TextMessage->new(
+    my $nexmo = Nexmo::SMS::UnicodeMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
         text     => 'This is a test',
+        type     => 'unicode',
         from     => 'Test02',
         to       => '452312432',
     );
@@ -161,7 +164,7 @@ This module simplifies sending SMS through the Nexmo API.
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage - Module that respresents a text message for the Nexmo SMS API!
+Nexmo::SMS::UnicodeMessage - Module that respresents a text message for the Nexmo SMS API!
 
 =head1 VERSION
 
@@ -173,7 +176,7 @@ Version 0.01
 
 create a new object
 
-    my $message = Nexmo::SMS::TextMessage->new(
+    my $message = Nexmo::SMS::UnicodeMessage->new(
         server   => 'http://test.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
@@ -211,21 +214,21 @@ return the "last" error as string.
 This actually calls the Nexmo SMS API. It returns a L<Nexmo::SMS::Response> object or
 C<undef> (on failure).
 
-   my $sms = Nexmo::SMS::TextMessage->new( ... );
+   my $sms = Nexmo::SMS::UnicodeMessage->new( ... );
    $sms->send or die $sms->errstr;
 
 =head2 check_needed_params
 
 This method checks if all needed parameters are passed.
 
-  my $params_not_ok = Nexmo::SMS::TextMessage->check_needed_params( ... );
+  my $params_not_ok = Nexmo::SMS::UnicodeMessage->check_needed_params( ... );
   if ( $params_not_ok ) {
       print "Please check $params_not_ok";
   }
 
 =head1 Attributes
 
-These attributes are available for C<Nexmo::SMS::TextMessage> objects:
+These attributes are available for C<Nexmo::SMS::UnicodeMessage> objects:
 
 =over 4
 
@@ -256,8 +259,6 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 Copyright 2011 Renee Baecker.
 
 This program is released under the following license: artistic_2
-
-=cut
 
 =head1 AUTHOR
 
