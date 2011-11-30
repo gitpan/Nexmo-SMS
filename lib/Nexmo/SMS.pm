@@ -11,7 +11,7 @@ use Nexmo::SMS::UnicodeMessage;
 use Nexmo::SMS::GetBalance;
 
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 
 
@@ -130,7 +130,7 @@ Nexmo::SMS
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -162,7 +162,7 @@ Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =head1 METHODS
 

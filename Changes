@@ -1,5 +1,8 @@
 Revision history for Nexmo-SMS
 
+0.05    Nov 30, 2011 - "Paris"
+        + forget to mention the "type" attribute in UnicodeMessage
+
 0.04    Nov 25, 2011 - "Munich"
         + add support for unicode messages (thanks Jui-Nan Lin)
         + fix linefeeds

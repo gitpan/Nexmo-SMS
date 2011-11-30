@@ -9,7 +9,7 @@ use LWP::UserAgent;
 use JSON::PP;
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my %attrs = (
     text              => 'required',
@@ -138,7 +138,7 @@ Nexmo::SMS::UnicodeMessage
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -168,7 +168,7 @@ Nexmo::SMS::UnicodeMessage - Module that respresents a text message for the Nexm
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 METHODS
 
@@ -231,6 +231,8 @@ This method checks if all needed parameters are passed.
 These attributes are available for C<Nexmo::SMS::UnicodeMessage> objects:
 
 =over 4
+
+=item * type
 
 =item * client_ref
 
