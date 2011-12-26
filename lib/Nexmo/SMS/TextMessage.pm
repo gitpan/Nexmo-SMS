@@ -8,8 +8,10 @@ use Nexmo::SMS::Response;
 use LWP::UserAgent;
 use JSON::PP;
 
+# ABSTRACT: Module that respresents a text message for the Nexmo SMS API!
 
-our $VERSION = '0.01';
+
+our $VERSION = '0.02';
 
 my %attrs = (
     text              => 'required',
@@ -18,6 +20,7 @@ my %attrs = (
     server            => 'required',
     username          => 'required',
     password          => 'required',
+    type              => 'optional',
     status_report_req => 'optional',
     client_ref        => 'optional',
     network_code      => 'optional',
@@ -79,6 +82,7 @@ sub send {
     $optional{'client-ref'}        = $self->client_ref        if $self->client_ref;
     $optional{'status-report-req'} = $self->status_report_req if $self->status_report_req;
     $optional{'network-code'}      = $self->network_code      if $self->network_code;
+    $optional{'type'}              = $self->type              if $self->type;
     
     my $response = $self->user_agent->post(
         $self->server,
@@ -132,11 +136,11 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::TextMessage
+Nexmo::SMS::TextMessage - Module that respresents a text message for the Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -145,7 +149,7 @@ This module simplifies sending SMS through the Nexmo API.
     use Nexmo::SMS::TextMessage;
 
     my $nexmo = Nexmo::SMS::TextMessage->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
         text     => 'This is a test',
@@ -159,13 +163,9 @@ This module simplifies sending SMS through the Nexmo API.
         print "SMS was sent...\n";
     }
 
-=head1 NAME
-
-Nexmo::SMS::TextMessage - Module that respresents a text message for the Nexmo SMS API!
-
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 METHODS
 
@@ -174,7 +174,7 @@ Version 0.01
 create a new object
 
     my $message = Nexmo::SMS::TextMessage->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
     );
@@ -187,6 +187,7 @@ This method recognises these parameters:
     server            => 'required',
     username          => 'required',
     password          => 'required',
+    type              => 'optional',
     status_report_req => 'optional',
     client_ref        => 'optional',
     network_code      => 'optional',
@@ -245,6 +246,8 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 
 =item * to
 
+=item * type
+
 =item * username
 
 =back
@@ -256,8 +259,6 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 Copyright 2011 Renee Baecker.
 
 This program is released under the following license: artistic_2
-
-=cut
 
 =head1 AUTHOR
 

@@ -7,6 +7,8 @@ use Nexmo::SMS::Response::Message;
 
 use JSON::PP;
 
+# ABSTRACT: Module that represents a response from Nexmo SMS API!
+
 
 our $VERSION = '0.01';
 
@@ -97,11 +99,11 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::Response
+Nexmo::SMS::Response - Module that represents a response from Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -128,10 +130,6 @@ This module represents a response from Nexmo.
     for my $message ( $response ) {
         print $message->status;
     }
-
-=head1 NAME
-
-Nexmo::SMS::Response - Module that represents a response from Nexmo SMS API!
 
 =head1 VERSION
 
@@ -204,8 +202,6 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 Copyright 2011 Renee Baecker.
 
 This program is released under the following license: artistic_2
-
-=cut
 
 =head1 AUTHOR
 

@@ -8,8 +8,10 @@ use Nexmo::SMS::Response;
 use LWP::UserAgent;
 use JSON::PP;
 
+# ABSTRACT: Module that respresents a WAPPush message for the Nexmo SMS API!
 
-our $VERSION = '0.01';
+
+our $VERSION = '0.02';
 
 my %attrs = (
     title             => 'required',
@@ -138,11 +140,11 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::WAPPushMessage
+Nexmo::SMS::WAPPushMessage - Module that respresents a WAPPush message for the Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -151,7 +153,7 @@ This module simplifies sending SMS through the Nexmo API.
     use Nexmo::SMS::WAPPushMessage;
 
     my $nexmo = Nexmo::SMS::WAPPushMessage->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
         text     => 'This is a test',
@@ -165,13 +167,9 @@ This module simplifies sending SMS through the Nexmo API.
         print "SMS was sent...\n";
     }
 
-=head1 NAME
-
-Nexmo::SMS::WAPPushMessage - Module that respresents a WAPPush message for the Nexmo SMS API!
-
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 METHODS
 
@@ -180,7 +178,7 @@ Version 0.01
 create a new object
 
     my $message = Nexmo::SMS::WAPPushMessage->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
     );
@@ -271,8 +269,6 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 Copyright 2011 Renee Baecker.
 
 This program is released under the following license: artistic_2
-
-=cut
 
 =head1 AUTHOR
 

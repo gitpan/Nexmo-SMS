@@ -6,12 +6,13 @@ use strict;
 use Nexmo::SMS::BinaryMessage;
 use Nexmo::SMS::TextMessage;
 use Nexmo::SMS::WAPPushMessage;
-use Nexmo::SMS::UnicodeMessage;
 
 use Nexmo::SMS::GetBalance;
 
+# ABSTRACT: Module for the Nexmo SMS API!
 
-our $VERSION = '0.05';
+
+our $VERSION = '0.06';
 
 
 
@@ -33,7 +34,7 @@ sub new {
     
     my $self = bless {}, $class;
 
-    $param{server} ||= '';
+    $param{server} ||= 'http://rest.nexmo.com/sms/json';
     
     for my $attr ( @attrs ) {
         if ( exists $param{$attr} ) {
@@ -50,7 +51,7 @@ sub sms {
     
     my %types = (
         text    => 'Nexmo::SMS::TextMessage',
-        unicode => 'Nexmo::SMS::UnicodeMessage',
+        unicode => 'Nexmo::SMS::TextMessage',
         binary  => 'Nexmo::SMS::BinaryMessage',
         wappush => 'Nexmo::SMS::WAPPushMessage',
     );
@@ -63,6 +64,8 @@ sub sms {
         
     my $type   = $requested_type || 'text';
     my $module = $types{$type};
+
+    $param{type} = $type if $type ne 'text';
     
     # check for needed params
     my $sub_name  = 'check_needed_params';
@@ -126,11 +129,11 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS
+Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -139,7 +142,7 @@ This module simplifies sending SMS through the Nexmo API.
     use Nexmo::SMS;
 
     my $nexmo = Nexmo::SMS->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
     );
@@ -156,13 +159,9 @@ This module simplifies sending SMS through the Nexmo API.
         print "SMS was sent...\n";
     }
 
-=head1 NAME
-
-Nexmo::SMS - Module for the Nexmo SMS API!
-
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =head1 METHODS
 
@@ -171,7 +170,7 @@ Version 0.05
 create a new object
 
     my $foo = Nexmo::SMS->new(
-        server   => 'http://test.nexmo.com/sms/json',
+        server   => 'http://rest.nexmo.com/sms/json',
         username => 'testuser1',
         password => 'testpasswd2',
     );

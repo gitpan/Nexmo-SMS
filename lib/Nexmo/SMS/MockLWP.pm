@@ -1,5 +1,7 @@
 package Nexmo::SMS::MockLWP;
 
+# ABSTRACT: Module for the Nexmo SMS API!
+
 
 use LWP::UserAgent;
 use HTTP::Response;
@@ -67,19 +69,15 @@ our $VERSION = 0.01;
 
 =head1 NAME
 
-Nexmo::SMS::MockLWP
+Nexmo::SMS::MockLWP - Module for the Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 DESCRIPTION
 
 This module mocks POST requests. It exists only for the unit tests!
-
-=head1 NAME
-
-Nexmo::SMS - Module for the Nexmo SMS API!
 
 =head1 VERSION
 

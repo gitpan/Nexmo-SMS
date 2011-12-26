@@ -3,8 +3,10 @@ package Nexmo::SMS::Response::Message;
 use strict;
 use warnings;
 
+# ABSTRACT: Module that represents a single message in the response from Nexmo SMS API!
 
-our $VERSION = '0.01';
+
+our $VERSION = '0.02';
 
 # create getter/setter
 my @attrs = qw(
@@ -69,11 +71,11 @@ __END__
 
 =head1 NAME
 
-Nexmo::SMS::Response::Message
+Nexmo::SMS::Response::Message - Module that represents a single message in the response from Nexmo SMS API!
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -94,13 +96,9 @@ This module represents a single message in a response from Nexmo.
     
     print $nexmo->message_price;
 
-=head1 NAME
-
-Nexmo::SMS::Message - Module that represents a single message in the response from Nexmo SMS API!
-
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 METHODS
 
@@ -152,8 +150,6 @@ These attributes are available for C<Nexmo::SMS::TextMessage> objects:
 Copyright 2011 Renee Baecker.
 
 This program is released under the following license: artistic_2
-
-=cut
 
 =head1 AUTHOR
 
